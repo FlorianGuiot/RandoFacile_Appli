@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RandoFacile.PageProduit"
+             Title="PageProduit">
+
+
+
+    <AbsoluteLayout x:Name="monLayout" WidthRequest="{OnPlatform WinUI=800}" >
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+
+            
+            <HorizontalStackLayout Grid.Row="0">
+                <Image Source="{Binding PathPhoto, StringFormat=http://localhost/{0}}" WidthRequest = "150" />
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <HorizontalStackLayout Grid.Row="0" HorizontalOptions="Center">
+                        <Label Text="{Binding Libelle}" FontSize="15" FontAttributes="Bold" Margin="10" />
+                    </HorizontalStackLayout>
+
+
+                    <HorizontalStackLayout Grid.Row="1" HorizontalOptions="Center">
+                        <Label Text="{Binding Resume}" FontSize="9" FontAttributes="Bold" Margin="5" />
+                    </HorizontalStackLayout>
+
+
+                    <HorizontalStackLayout Grid.Row="2" HorizontalOptions="Center">
+                        <Label Text="{Binding laCateg.Libelle, StringFormat= Categorie : {0}}" FontSize="11" FontAttributes="Bold" Margin="10" />
+                    </HorizontalStackLayout>
+
+
+                    <HorizontalStackLayout Grid.Row="3" VerticalOptions="Center" HorizontalOptions="Center">
+                        <Label Text="{Binding PrixVenteUHT, StringFormat= Prix : {0} € HT}" FontSize="11" FontAttributes="Bold" Margin="5" />
+                    </HorizontalStackLayout>
+
+                </Grid>
+
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout Grid.Row="1" >
+                <Label Text="Stock" FontSize="15" FontAttributes="Bold" Margin="10" />
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout Grid.Row="2">
+                <Label Text="{Binding QteStock, StringFormat= Quantité en stock : {0}}" FontSize="11" FontAttributes="Bold" Margin="10" />
+                
+            </HorizontalStackLayout>
+
+
+            <HorizontalStackLayout Grid.Row="3">
+                <Label Text="Seuil d'alerte" FontSize="11" FontAttributes="Bold" Margin="10" />
+                <Entry x:Name="entryAlerte"  Text="{Binding AlerteStock}" />
+                <Button x:Name="btnAlerte" Text="Modifier" Clicked="btnAlerte_Clicked" />
+            </HorizontalStackLayout>
+
+
+            <HorizontalStackLayout Grid.Row="4">
+                <Label Text="Description" FontSize="15" FontAttributes="Bold" Margin="10" />
+
+            </HorizontalStackLayout>
+
+
+            <HorizontalStackLayout Grid.Row="5" IsEnabled="True"  >
+                <Label Text="{Binding Description}" FontSize="9" FontAttributes="Bold" LineBreakMode="CharacterWrap" />
+            </HorizontalStackLayout>
+
+
+
+
+
+        </Grid>
+
+    </AbsoluteLayout>
+</ContentPage>

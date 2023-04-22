@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RandoFacile.PageStock"
+             Title="Produits en stock"
+             Loaded="ContentPage_Loaded">
+
+
+    <VerticalStackLayout>
+        
+        <!--Filtres-->
+        <Grid Padding="10" Margin="30,20,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <!--Selecteur de categorie-->
+            <Picker x:Name="categoriePicker"
+            Title="Categorie"
+            SelectedIndexChanged="categoriePicker_SelectedIndexChanged"
+            Grid.Column="0" Grid.Row="0"
+            ItemsSource="{Binding Categorie}"
+            ItemDisplayBinding="{Binding Libelle}"
+            SelectedIndex="0"
+            ></Picker>
+
+            <!--Tri par ordre croissant ou décroissant-->
+            <StackLayout Margin="100,0,0,0" Grid.Column="1" Grid.Row="0">
+                <Label Text="Trier par stock" />
+                <StackLayout RadioButtonGroup.GroupName="stockOrdre" Orientation="Horizontal">
+                    <RadioButton x:Name="radioButton1" IsChecked="True" Content="Croissant" CheckedChanged="stockOrdre_CheckedChanged"/>
+                    <RadioButton x:Name="radioButton2" Content="Décroissant" CheckedChanged="stockOrdre_CheckedChanged"/>
+                </StackLayout>
+            </StackLayout>
+
+
+        </Grid>
+        
+        <!--Nom des colonnes-->
+        <Grid Padding="10" Margin="30,20,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80" />
+                <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="300" />
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="150" />
+                <ColumnDefinition Width="150" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Grid.Row="0" Text="Image" FontAttributes="Bold" FontSize="15" />
+            <Label Grid.Column="1" Grid.Row="0" Text="ID" FontAttributes="Bold" FontSize="15" />
+            <Label Grid.Column="2" Grid.Row="0" Text="Info" FontAttributes="Bold" FontSize="15" />
+            <Label Grid.Column="3" Grid.Row="0" Text="Prix" FontAttributes="Bold" FontSize="15" />
+            <Label Grid.Column="4" Grid.Row="0" Text="Qte en stock" FontAttributes="Bold" FontSize="15" />
+        </Grid>
+
+        <!--Les produits-->
+        <CollectionView  x:Name="colViewProduits" SelectionMode="Single" SelectionChanged="colViewProduits_SelectionChanged"
+                             Margin="30,20,0,0" ItemsSource="{Binding Produit}" MaximumHeightRequest="600">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="80" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Row="0" Grid.Column="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="80" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="80" />
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Grid.Row="0" Source="{Binding PathPhoto, StringFormat=http://localhost/{0}}" WidthRequest = "80" />
+                        </Grid>
+
+
+                        <Grid Padding="10" Grid.Row="0" Grid.Column="1" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto"  />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="300" />
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="150" />
+                                <ColumnDefinition Width="150" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Grid.Row="0" Text="{Binding Id}" FontAttributes="Bold" FontSize="10" />
+                            <Label Grid.Column="1" Grid.Row="0" Text="{Binding Libelle}" FontAttributes="Bold" FontSize="15" />
+                            <Label Grid.Column="1" Grid.Row="1" Text="{Binding Resume}" FontSize="9" FontAttributes="Italic"/>
+                            <Label Grid.Column="2" Grid.Row="1" Text="{Binding PrixVenteUHT, StringFormat=\ {0}€ HT}" FontSize="9" FontAttributes="Italic"/>
+                            <Label Grid.Column="3" Grid.Row="1" Text="{Binding QteStock}"  Padding="10,0,0,0" FontSize="9" FontAttributes="Italic"/>
+                            <Label Grid.Column="1" Grid.Row="2" Text="{Binding laCateg.Libelle}" FontAttributes="Bold" Margin="50,0,0,0" FontSize="12" />
+                        </Grid>
+
+
+
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>

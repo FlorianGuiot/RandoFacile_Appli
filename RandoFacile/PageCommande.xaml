@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RandoFacile.PageCommande"
+             Title="PageCommande"
+             Loaded="ContentPage_Loaded">
+
+
+
+    <VerticalStackLayout>
+
+
+
+
+        <AbsoluteLayout x:Name="monLayout" WidthRequest="{OnPlatform WinUI=800}" >
+
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="100"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="Auto" ></RowDefinition>
+                    <RowDefinition Height="Auto" ></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300"></ColumnDefinition>
+                    <ColumnDefinition Width="300"></ColumnDefinition>
+                    <ColumnDefinition Width="300"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+
+                <!--Selecteur de categorie-->
+                <Picker x:Name="StatutPicker"
+                Title="Statut"
+                Grid.Column="0" Grid.Row="0"
+                ItemsSource="{Binding Statut}"
+                ItemDisplayBinding="{Binding Libelle}"
+                SelectedIndex="0"
+                ></Picker>
+
+                <Button Grid.Column="1" Grid.Row="0" x:Name="btModifier" HeightRequest="40" WidthRequest="150" Margin="20"  Text="Mettre à jour"  Clicked="btModifier_Clicked"/>
+
+
+
+                <!--Informations-->
+
+                <!--Numero de commande-->
+                <Label Grid.Column="0" Grid.Row="1" Text="{Binding Id, StringFormat= N° : {0}}"></Label>
+
+                <!--Montant de la commande-->
+                <Label Grid.Column="2" Grid.Row="1" x:Name="lblMontantTotal" Text=""></Label>
+
+
+                <!--Email utilisateur-->
+                <Label Grid.Column="0" Grid.Row="2" FontSize="13" Text="{Binding Utilisateur.Email, StringFormat= Email : {0}}"></Label>
+
+
+                <!--Adresse-->
+
+                <!--Adresse rue-->
+                <Label Grid.Column="0" Grid.Row="3" FontSize="13" Text="{Binding Adresse, StringFormat= Adresse : {0}}"></Label>
+
+                <!--Adresse Ville-->
+                <Label Grid.Column="1" Grid.Row="3" FontSize="13" Text="{Binding Ville, StringFormat= Ville : {0}}"></Label>
+
+                <!--Adresse CP-->
+                <Label Grid.Column="2" Grid.Row="3" FontSize="13" Text="{Binding Cp, StringFormat= CP : {0}}"></Label>
+
+                <!--Adresse Pays-->
+                <Label Grid.Column="0" Grid.Row="4" FontSize="13" Text="{Binding lePays.Libelle, StringFormat= Pays : {0}}"></Label>
+
+                <!--Adresse Nom-->
+                <Label Grid.Column="1" Grid.Row="4" FontSize="13" Text="{Binding Nom, StringFormat= Nom : {0}}"></Label>
+
+                <!--Adresse Nom-->
+                <Label Grid.Column="2" Grid.Row="4" FontSize="13" Text="{Binding Prenom, StringFormat= Prénom : {0}}"></Label>
+
+
+
+
+                <Button Grid.Column="0" Grid.Row="5" x:Name="btHistorique" HeightRequest="40" Text="Historique" />
+                
+                <!--Details-->
+                <Label Grid.Column="0" Grid.Row="6" FontSize="19" Text="Détails commande"></Label>
+
+
+                <!--Nom des colonnes-->
+                <HorizontalStackLayout Grid.Row="7">
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80" />
+                            <ColumnDefinition Width="50" />
+                            <ColumnDefinition Width="300" />
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Grid.Row="0" Text="Image" FontAttributes="Bold" FontSize="15" />
+                        <Label Grid.Column="1" Grid.Row="0" Text="ID" FontAttributes="Bold" FontSize="15" />
+                        <Label Grid.Column="2" Grid.Row="0" Text="Info" FontAttributes="Bold" FontSize="15" />
+                        <Label Grid.Column="3" Grid.Row="0" Text="Prix" FontAttributes="Bold" FontSize="15" />
+                        <Label Grid.Column="4" Grid.Row="0" Text="Qte" FontAttributes="Bold" FontSize="15" />
+                    </Grid>
+                    
+                </HorizontalStackLayout>
+                
+                <!--Les produits-->
+                <HorizontalStackLayout Grid.Row="8">
+
+
+                    <CollectionView  x:Name="colViewProduits" SelectionMode="Single" 
+                                    ItemsSource="{Binding LigneCommande}"
+                                    MaximumHeightRequest="300">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Padding="10">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="80" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid Grid.Row="0" Grid.Column="0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="80" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="80" />
+                                        </Grid.ColumnDefinitions>
+                                        <Image Grid.Column="0" Grid.Row="0" Source="{Binding unP.PathPhoto, StringFormat=http://localhost/{0}}" WidthRequest = "80" />
+                                    </Grid>
+
+
+                                    <Grid Padding="10" Grid.Row="0" Grid.Column="1" >
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto"  />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="50" />
+                                            <ColumnDefinition Width="300" />
+                                            <ColumnDefinition Width="100" />
+                                            <ColumnDefinition Width="150" />
+                                            <ColumnDefinition Width="150" />
+                                        </Grid.ColumnDefinitions>
+                                        <Label Grid.Column="0" Grid.Row="0" Text="{Binding unP.Id}" FontAttributes="Bold" FontSize="10" />
+                                        <Label Grid.Column="1" Grid.Row="0" Text="{Binding unP.Libelle}" FontAttributes="Bold" FontSize="15" />
+                                        <Label Grid.Column="1" Grid.Row="1" Text="{Binding unP.Resume}" FontSize="9" FontAttributes="Italic"/>
+                                        <Label Grid.Column="2" Grid.Row="1" Text="{Binding unP.PrixVenteUHT, StringFormat=\ {0}€ HT}" FontSize="9" FontAttributes="Italic"/>
+                                        <Label Grid.Column="3" Grid.Row="1" Text="{Binding qte}"  Padding="10,0,0,0" FontSize="9" FontAttributes="Italic"/>
+                                        <Label Grid.Column="1" Grid.Row="2" Text="{Binding unP.laCateg.Libelle}" FontAttributes="Bold" Margin="50,0,0,0" FontSize="12" />
+                                    </Grid>
+
+
+
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </HorizontalStackLayout>
+
+            </Grid>
+
+
+        </AbsoluteLayout>
+    </VerticalStackLayout>
+    
+    
+</ContentPage>
