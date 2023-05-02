@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RandoFacile.PageHistorique"
+             Title="Historique"
+             Loaded="ContentPage_Loaded">
+
+
+    <VerticalStackLayout>
+
+
+
+
+        <AbsoluteLayout x:Name="monLayout" WidthRequest="{OnPlatform WinUI=800}" >
+            
+            <!--Les Statuts-->
+            <HorizontalStackLayout Grid.Row="8">
+
+
+                <CollectionView  x:Name="colViewStatut" SelectionMode="Single" 
+                                            ItemsSource="{Binding DetailStatut}"
+                                            MaximumHeightRequest="300">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                    
+                            <Grid Padding="10" >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto"  />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="150" />
+                                    <ColumnDefinition Width="300" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Grid.Row="0" Text="{Binding unS.Libelle}" FontAttributes="Bold" FontSize="10" />
+                                <Label Grid.Column="1" Grid.Row="0" Text="{Binding date}" FontAttributes="Bold" FontSize="15" />
+
+                            </Grid>
+
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </HorizontalStackLayout>
+
+
+        </AbsoluteLayout>
+    </VerticalStackLayout>
+    
+</ContentPage>

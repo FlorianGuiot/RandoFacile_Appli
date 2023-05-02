@@ -8,6 +8,7 @@ namespace RandoFacile
 {
     public class LigneCommande
     {
+
         public LigneCommande(Produit unP, int qte)
         {
             this.unP = unP;

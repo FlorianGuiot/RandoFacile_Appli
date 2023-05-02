@@ -60,7 +60,7 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="80" />
                             </Grid.ColumnDefinitions>
-                            <Image Grid.Column="0" Grid.Row="0" Source="{Binding PathPhoto, StringFormat=http://localhost/{0}}" WidthRequest = "80" />
+                            <Image Grid.Column="0" Grid.Row="0" Source="{Binding PathPhoto, StringFormat=http://localhost{0}}" WidthRequest = "80" />
                         </Grid>
 
 

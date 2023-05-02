@@ -5,10 +5,13 @@ public partial class PageCommande : ContentPage
 {
 
     private Commande laCommande;
+    private Statut leStatut;
+
 	public PageCommande(Commande laCommande)
 	{
-		InitializeComponent();
         this.laCommande = laCommande;
+        InitializeComponent();
+        
         this.Title = "Commande N°" + this.laCommande.Id;
         monLayout.BindingContext = this.laCommande;
 
@@ -37,13 +40,13 @@ public partial class PageCommande : ContentPage
 
 
             //Récupère les statuts en BDD.
+            StatutPicker.BindingContext = leStatut;
             StatutPicker.ItemsSource = await Contexte.GetLesStatuts();
-
+           
             StatutPicker.ItemsSource = StatutPicker.GetItemsAsList();
 
 
             //Affectation du statut sélectionné par défaut : Le plus récent
-
             Dictionary<Statut, DateTime> lesStatutsCommande = laCommande.detailsStatuts; // Les statuts de la commande
             Statut leStatutPlusRecent = lesStatutsCommande.Keys.FirstOrDefault(); //Par défaut le premier statut
 
@@ -60,6 +63,7 @@ public partial class PageCommande : ContentPage
             }
 
             //Index du statut séléctionné par défaut = au dernier statut de la commande
+            this.leStatut = leStatutPlusRecent;
             StatutPicker.SelectedIndex = StatutPicker.ItemsSource.IndexOf(leStatutPlusRecent);
 
 
@@ -104,6 +108,17 @@ public partial class PageCommande : ContentPage
 
 
         }
+
+    }
+
+
+
+    private async void btHistorique_Clicked(object sender, EventArgs e)
+    {
+        
+
+        //Permet d'accéder à la page historique
+        Navigation.PushAsync(new PageHistorique(laCommande));
 
     }
 

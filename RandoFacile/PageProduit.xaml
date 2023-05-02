@@ -27,7 +27,7 @@
 
             
             <HorizontalStackLayout Grid.Row="0">
-                <Image Source="{Binding PathPhoto, StringFormat=http://localhost/{0}}" WidthRequest = "150" />
+                <Image Source="{Binding PathPhoto, StringFormat=http://localhost{0}}" WidthRequest = "150" />
 
                 <Grid>
                     <Grid.RowDefinitions>
@@ -58,7 +58,7 @@
 
 
                     <HorizontalStackLayout Grid.Row="3" VerticalOptions="Center" HorizontalOptions="Center">
-                        <Label Text="{Binding PrixVenteUHT, StringFormat= Prix : {0} € HT}" FontSize="11" FontAttributes="Bold" Margin="5" />
+                        <Label Text="{Binding PrixVenteUHT, StringFormat= Prix : {0} €  HT}" FontSize="11" FontAttributes="Bold" Margin="5" />
                     </HorizontalStackLayout>
 
                 </Grid>

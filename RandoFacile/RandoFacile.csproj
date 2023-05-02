@@ -73,6 +73,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="PageHistorique.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="PageTrouverCommande.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
